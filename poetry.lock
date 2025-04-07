@@ -1203,7 +1203,7 @@ version = "2.0.40"
 description = "Database Abstraction Library"
 optional = false
 python-versions = ">=3.7"
-groups = ["main"]
+groups = ["main", "api"]
 files = [
     {file = "SQLAlchemy-2.0.40-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:ae9597cab738e7cc823f04a704fb754a9249f0b6695a6aeb63b74055cd417a96"},
     {file = "SQLAlchemy-2.0.40-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:37a5c21ab099a83d669ebb251fddf8f5cee4d75ea40a5a1653d9c43d60e20867"},
@@ -1442,4 +1442,4 @@ propcache = ">=0.2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "f3b842ef4f4af59916ccd54eb0e89927fd9a7f0078758968fadc81df58d33a51"
+content-hash = "cb81a707a9b7f8311a626241f30ebad6331877349ffc807fcc6f0fabb5d45241"

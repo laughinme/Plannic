@@ -23,6 +23,7 @@ pydantic-settings = "^2.8.1"
 bcrypt = "^4.3.0"
 asyncpg = "^0.30.0"
 greenlet = "^3.1.1"
+sqlalchemy = "^2.0.40"
 
 
 [tool.poetry.group.bot.dependencies]

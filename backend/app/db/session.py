@@ -17,6 +17,3 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Returns prepared postgres session"""
     async with async_session() as session:
         yield session
-
-
-

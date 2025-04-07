@@ -12,6 +12,8 @@ RUN poetry install --only main,api --no-interaction --no-ansi --no-root
 COPY backend /app/backend
 COPY backend/entry.sh /app/entry.sh
 
+# COPY . .
+
 RUN chmod +x /app/entry.sh
 
 EXPOSE 8000

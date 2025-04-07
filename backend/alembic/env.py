@@ -7,9 +7,10 @@ from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import create_async_engine
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+# sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
-from app.db.base import Base
+from app.db import Base
+from app.models import *
 from app.core.settings import Settings
 
 # Alembic Config object
