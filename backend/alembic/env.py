@@ -1,6 +1,6 @@
 import asyncio
-import os
-import sys
+# import os
+# import sys
 from logging.config import fileConfig
 
 from alembic import context
@@ -9,16 +9,15 @@ from sqlalchemy.ext.asyncio import create_async_engine
 
 # sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
-from app.db import Base
-from app.models import *
-from app.core.settings import Settings
+from db import Base
+from models import *
+from core.settings import Settings
 
 # Alembic Config object
 config = context.config
 
 settings = Settings()
 config.set_main_option("sqlalchemy.url", settings.DB_URL)
-print(settings.DB_URL)
 
 fileConfig(config.config_file_name)
 target_metadata = Base.metadata

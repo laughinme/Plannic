@@ -6,7 +6,8 @@ cd /app/backend
 echo "Running Alembic migrations..."
 alembic upgrade head
 
-cd app
+echo "Setting up PYTHONPATH..."
+export PYTHONPATH=$PYTHONPATH:/app/backend
 
 echo "Starting the application..."
 python main.py

@@ -1,7 +1,7 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import asyncio
 
-from services.schedule_parsing import parse_schedule
+from services.schedule.update import parse_schedule
 
 scheduler = AsyncIOScheduler()
 

@@ -7,7 +7,7 @@ from .lessons import Lesson
 from .enums import WeekDay
 from .teachers import Teacher
 
-from app.db import Base
+from db import Base
 
 class Period(Base):
     __tablename__ = "periods"

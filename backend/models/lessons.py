@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String
 
-from app.db import Base
+from db import Base
 
 class Lesson(Base):
     """School lesson model. Name field contains lesson name with emoji."""
