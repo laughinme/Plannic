@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     BOT_WEBHOOK_URL: str = "http://bot:8000/webhook"
     
     # Basic config
-    SCHEDULE_URL: str = "https://lyceum.nstu.ru/rasp/m.schedule.html"
+    MOBILE_SCHEDULE_URL: str = "https://lyceum.nstu.ru/rasp/m.schedule.html"
     
     # Redis settings
     REDIS_HOST: str = "redis"

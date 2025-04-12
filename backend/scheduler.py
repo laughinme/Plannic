@@ -1,7 +1,7 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import asyncio
 
-from services.schedule.update import parse_schedule
+from services.schedule.update import update_schedule_db
 
 scheduler = AsyncIOScheduler()
 
@@ -13,9 +13,9 @@ def start_scheduler():
     scheduler.add_job(
         func=_run_parse_task,
         trigger='interval',
-        seconds=2
+        seconds=1
     )
     scheduler.start()
 
 def _run_parse_task():
-    asyncio.run(parse_schedule())
+    asyncio.run(update_schedule_db())

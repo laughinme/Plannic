@@ -1,5 +1,6 @@
 from .classes import *
-from .lessons import *
+from .subjects import *
 from .schedule import *
 from .teachers import *
+from .times import *
 from .enums import *

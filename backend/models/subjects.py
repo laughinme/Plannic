@@ -3,19 +3,19 @@ from sqlalchemy import String
 
 from db import Base
 
-class Lesson(Base):
-    """School lesson model. Name field contains lesson name with emoji."""
+class Subject(Base):
+    """School subject model. Name field contains subject name with emoji."""
     
-    __tablename__ = "lessons"
+    __tablename__ = "subjects"
     
     id: Mapped[str] = mapped_column(String, primary_key=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
 
 
-class LessonEmoji(Base):
-    """Lesson emoji model."""
+class SubjectEmoji(Base):
+    """Subject emoji model."""
     
-    __tablename__ = "lesson_emojis"
+    __tablename__ = "subject_emojis"
     
     name: Mapped[str] = mapped_column(String, primary_key=True)
     emoji: Mapped[str] = mapped_column(String, nullable=False)

@@ -6,14 +6,14 @@ from models import WeekDay
 
 
 async def update_schedule_db():
+    print('starting')
     content = await parse_schedule()
-    print(content)
+
     
     for day in WeekDay:
-        print(day)
+        pass
     
     
-
 
 
 if __name__ == '__main__':

@@ -1,19 +1,12 @@
-from sqlalchemy import ForeignKey, Integer, String, Enum, Time, Boolean
+from sqlalchemy import ForeignKey, Integer, String, Enum, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from datetime import time
 
 from .classes import ClassRoom, Group, Class
-from .lessons import Lesson
+from .subjects import Subject
 from .enums import WeekDay
 from .teachers import Teacher
 
 from db import Base
-
-class Period(Base):
-    __tablename__ = "periods"
-    
-    prefix: Mapped[str] = mapped_column(String, primary_key=True)
-    period: Mapped[str] = mapped_column(String, nullable=False)
     
     
 class Schedule(Base):
@@ -24,19 +17,18 @@ class Schedule(Base):
     day: Mapped[WeekDay] = mapped_column(Enum(WeekDay), nullable=False)
     
     lesson_number: Mapped[int] = mapped_column(Integer, nullable=False)
-    lesson_id: Mapped[str] = mapped_column(String, ForeignKey("lessons.id"))
+    subject_id: Mapped[str] = mapped_column(String, ForeignKey("subjects.id"))
     teacher_id: Mapped[str] = mapped_column(String, ForeignKey("teachers.id"))
     classroom_id: Mapped[str] = mapped_column(String, ForeignKey("classrooms.id"))
-    group_id: Mapped[str] = mapped_column(String, ForeignKey('groups.id'), nullable=True)
+    group_id: Mapped[str] = mapped_column(String, ForeignKey('groups.id'))
     
-    start_time: Mapped[time] = mapped_column(Time)
-    end_time: Mapped[time] = mapped_column(Time)
+    lesson_time_id: Mapped[int] = mapped_column(Integer, ForeignKey('times.number'))
     
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     
     
     _class: Mapped[Class] = relationship(Class, back_populates="schedule")
-    lesson: Mapped[Lesson] = relationship(Lesson, back_populates="schedule")
+    subject: Mapped[Subject] = relationship(Subject, back_populates="schedule")
     teacher: Mapped[Teacher] = relationship(Teacher, back_populates="schedule")
     classroom: Mapped[ClassRoom] = relationship(ClassRoom, back_populates="schedule")
     group: Mapped[Group] = relationship(Group, back_populates="schedule")

@@ -1,8 +1,8 @@
-"""preload lesson_emojis table
+"""load_emojis
 
-Revision ID: bf95742b900b
-Revises: 0b529b8d1265
-Create Date: 2025-04-08 12:37:09.009529
+Revision ID: 4c1322c2cd5f
+Revises: 77d859dab2c9
+Create Date: 2025-04-13 01:04:21.087724
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'bf95742b900b'
-down_revision: Union[str, None] = '0b529b8d1265'
+revision: str = '4c1322c2cd5f'
+down_revision: Union[str, None] = '77d859dab2c9'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -111,7 +111,7 @@ def upgrade() -> None:
     
     for lesson, emoji in emojis.items():
         op.execute(
-            sa.text("INSERT INTO lesson_emojis (name, emoji) VALUES (:n, :e)")
+            sa.text("INSERT INTO subject_emojis (name, emoji) VALUES (:n, :e)")
             .bindparams(n=lesson, e=emoji)
         )
 
@@ -119,4 +119,4 @@ def upgrade() -> None:
 def downgrade() -> None:
     """Downgrade schema."""
     
-    op.drop_table('lesson_emojis')
+    op.drop_table('subject_emojis')
