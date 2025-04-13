@@ -1,5 +1,5 @@
 from sqlalchemy import String, Integer, Time
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import time
 
 from db import Base
@@ -19,3 +19,5 @@ class LessonTimes(Base):
     number: Mapped[int] = mapped_column(Integer, primary_key=True)
     start_time: Mapped[time] = mapped_column(Time)
     end_time: Mapped[time] = mapped_column(Time)
+    
+    schedule: Mapped[list["Schedule"]] = relationship("Schedule", back_populates='lesson_time') # type: ignore

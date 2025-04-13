@@ -17,7 +17,7 @@ from models import (
     Period,
     Schedule
 )
-from db.session import get_db
+from db.session import get_session
 
 T = TypeVar('T')
 
@@ -153,7 +153,7 @@ async def update_schedule_db():
     print('starting')
     content = await parse_schedule()
     
-    async with get_db() as session:
+    async with get_session() as session:
         # await clear_all(session)
         await load_dbs(content, session)
         await create_schedule(content, session)
