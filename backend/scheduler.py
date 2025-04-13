@@ -13,7 +13,7 @@ def start_scheduler():
     scheduler.add_job(
         func=_run_parse_task,
         trigger='interval',
-        seconds=1
+        seconds=60
     )
     scheduler.start()
 

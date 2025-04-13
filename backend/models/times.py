@@ -8,8 +8,9 @@ from db import Base
 class Period(Base):
     __tablename__ = "periods"
     
-    prefix: Mapped[str] = mapped_column(String, primary_key=True)
-    period: Mapped[str] = mapped_column(String, nullable=False)
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+    begin: Mapped[str] = mapped_column(String, nullable=False)
+    end: Mapped[str] = mapped_column(String, nullable=False)
     
 
 class LessonTimes(Base):
