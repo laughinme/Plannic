@@ -5,7 +5,6 @@ from schemas import (
     Lesson,
     DaySchedule,
     ClassSchedule,
-    AllSchedules,
 )
 from services import ScheduleService, get_schedule_service
 from models import WeekDay
@@ -16,33 +15,32 @@ router = APIRouter()
 
 @router.get(
     '/all',
-    response_model=AllSchedules,
+    response_model=list[ClassSchedule],
 )
 async def all_schedules(
-    
-    session: AsyncSession = Depends(get_session)
+    schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    pass
+    return await schedule_service.get_all_schedules()
 
 
 @router.get(
     '/class',
-    response_model=AllSchedules,
+    response_model=list[DaySchedule],
 )
 async def class_schedules(
     class_id: str = Query(..., description="Id of the class to get the schedule for"),
     schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    pass
+    return await schedule_service.get_week_schedule(class_id)
     
     
 @router.get(
     '/day',
-    # response_model=DaySchedule,
+    response_model=list[Lesson],
 )
 async def day_schedules(
     class_id: str = Query(..., description="Id of the class to get the schedule for"),
     day: WeekDay = Query(..., description="Day to get the schedule for"),
     schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    return await schedule_service.get_schedule(class_id, day)
+    return await schedule_service.get_day_schedule(class_id, day)

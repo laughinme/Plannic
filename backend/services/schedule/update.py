@@ -1,5 +1,5 @@
 import asyncio
-from sqlalchemy import delete
+from sqlalchemy import delete, text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Type, TypeVar
@@ -132,7 +132,8 @@ async def create_schedule(
                     await session.execute(query)
 
 async def clear_all(session: AsyncSession):
-    models = [    
+    models = [
+        Schedule,
         Class, 
         Teacher, 
         Subject, 
@@ -140,12 +141,13 @@ async def clear_all(session: AsyncSession):
         Group,
         LessonTimes,
         Period,
-        Schedule
     ]
     
+    table_names = ", ".join(model.__tablename__ for model in models)
+    query = text(f"TRUNCATE TABLE {table_names} RESTART IDENTITY CASCADE")
+    
     async with session.begin():
-        for model in models:
-            await session.execute(delete(model))
+        await session.execute(query)
         
 
 
@@ -154,7 +156,7 @@ async def update_schedule_db():
     content = await parse_schedule()
     
     async with get_session() as session:
-        # await clear_all(session)
+        await clear_all(session)
         await load_dbs(content, session)
         await create_schedule(content, session)
 
