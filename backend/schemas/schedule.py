@@ -3,28 +3,17 @@ from typing import Optional
 from datetime import time
 
 from models import WeekDay
-
-class ORMModel(BaseModel):
-    pass
-
-    class Config():
-        from_attributes = True
-    
-        
+from .orm import ORMModel
 
 class IdName(ORMModel):
     id: str
     name: str
     
-    class Config():
-        from_attributes = True
     
 class LessonTime(ORMModel):
     start_time: time
     end_time: time
     
-    class Config():
-        from_attributes = True
 
 class Lesson(ORMModel):
     lesson_number: int
@@ -35,17 +24,11 @@ class Lesson(ORMModel):
 
     lesson_time: LessonTime
     is_active: bool
-    
-    class Config():
-        from_attributes = True
 
 
 class DaySchedule(ORMModel):
     day: WeekDay
     lessons: list[Lesson]
-    
-    class Config():
-        from_attributes = True
 
 
 class ClassSchedule(ORMModel):
