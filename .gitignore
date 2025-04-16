@@ -4,3 +4,4 @@ test.py
 __pycache__/
 *.DS_Store
 openapi.json
+nika.json

@@ -18,12 +18,12 @@ class Schedule(Base):
     class_id: Mapped[str] = mapped_column(String, ForeignKey("classes.id"))
     day: Mapped[WeekDay] = mapped_column(Enum(WeekDay), nullable=False)
     
-    lesson_number: Mapped[int] = mapped_column(Integer, nullable=False)
+    lesson_number: Mapped[int] = mapped_column(Integer, ForeignKey('times.number'), nullable=False)
     subject_id: Mapped[str] = mapped_column(String, ForeignKey("subjects.id"), nullable=True)
     teacher_id: Mapped[str] = mapped_column(String, ForeignKey("teachers.id"), nullable=True)
     classroom_id: Mapped[str] = mapped_column(String, ForeignKey("classrooms.id"), nullable=True)
     group_id: Mapped[str] = mapped_column(String, ForeignKey('groups.id'), nullable=True)
-    lesson_time_id: Mapped[int] = mapped_column(Integer, ForeignKey('times.number'), nullable=False)
+    # lesson_time_id: Mapped[int] = mapped_column(Integer, ForeignKey('times.number'), nullable=False)
     
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
     

@@ -12,6 +12,6 @@ def start_scheduler():
     scheduler.add_job(
         func=update_schedule_db,
         trigger='interval',
-        seconds=60
+        seconds=5
     )
     scheduler.start()

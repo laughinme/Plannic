@@ -19,6 +19,7 @@ async def parse_schedule(path: str = None) -> dict:
             raise ValueError("Could not find schedule data URL")
         
         json_url = settings.MOBILE_SCHEDULE_URL.rsplit('/', 1)[0] + '/' + schedule_id
+        print(json_url)
         schedule_json = await client.get(json_url)
         schedule_json.raise_for_status()
         
