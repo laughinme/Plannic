@@ -40,7 +40,7 @@ class ScheduleRepo:
         query = (
             self.basic_selection()
             .where(Schedule.class_id == class_id)
-            .order_by(Schedule.day)
+            .order_by(Schedule.day, Schedule.lesson_number)
         )
         result = await self.session.scalars(query)
         week_schedule = result.all()
@@ -50,7 +50,7 @@ class ScheduleRepo:
     async def get_all_lessons(self) -> list[Schedule]:
         query = (
             self.basic_selection()
-            .order_by(Schedule.class_id, Schedule.day)
+            .order_by(Schedule.class_id, Schedule.day, Schedule.lesson_number, Schedule.group_id)
         )
         result = await self.session.scalars(query)
         all_schedules = result.all()

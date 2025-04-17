@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy.ext.asyncio import AsyncSession
+# from sqlalchemy.ext.asyncio import AsyncSession
 
 from schemas import (
     Lesson,
@@ -10,7 +10,7 @@ from services import ScheduleService, get_schedule_service
 from models import WeekDay
 from db import get_session
 
-router = APIRouter()
+router = APIRouter(prefix='/schedule', tags=['Schedule'])
 
 
 @router.get(
@@ -20,7 +20,8 @@ router = APIRouter()
 async def all_schedules(
     schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    return await schedule_service.get_all_schedules()
+    schedule = await schedule_service.get_all_schedules()
+    return schedule
 
 
 @router.get(
@@ -31,9 +32,10 @@ async def class_schedules(
     class_id: str = Query(..., description="Id of the class to get the schedule for"),
     schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    return await schedule_service.get_week_schedule(class_id)
-    
-    
+    schedule = await schedule_service.get_week_schedule(class_id)
+    return schedule
+
+
 @router.get(
     '/day',
     response_model=list[Lesson],
@@ -43,4 +45,5 @@ async def day_schedules(
     day: WeekDay = Query(..., description="Day to get the schedule for"),
     schedule_service: ScheduleService = Depends(get_schedule_service)
 ):
-    return await schedule_service.get_day_schedule(class_id, day)
+    schedule = await schedule_service.get_day_schedule(class_id, day)
+    return schedule

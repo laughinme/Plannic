@@ -1,6 +1,6 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from services.schedule.update import update_schedule_db
+from services.schedule import update_schedule_db
 
 scheduler = AsyncIOScheduler()
 

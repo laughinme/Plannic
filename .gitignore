@@ -3,3 +3,5 @@ test.py
 *.pyc
 __pycache__/
 *.DS_Store
+openapi.json
+nika.json
