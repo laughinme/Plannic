@@ -22,6 +22,7 @@ async def apply_exchanges(
         str, dict[str, dict[str, dict[str, list[str]]]]
     ] = content["CLASS_EXCHANGE"]
     period = await dao.get_period()
+    print('APPLY EXCHANGES')
     
     for class_id, changes in class_exchange.items():
         for date, lessons in changes.items():
@@ -38,8 +39,6 @@ async def apply_exchanges(
                 )
                 
                 existing_lessons = await dao.get_lessons_by_number(class_id, day, lesson_number)
-                
-                # print(existing_lessons, exchanges, "VIDRIST", sep='\n')
                 
                 # Add new lessons
                 if len(existing_lessons) == 0:

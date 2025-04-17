@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import TypeVar, Type
 from datetime import datetime, date
 
-from models import LessonTimes, Period, Schedule, WeekDay
+from models import LessonTimes, Period, Schedule, WeekDay, Hash
 from db import Base
 
 class DataLoadInterface:
@@ -178,3 +178,20 @@ class DataLoadInterface:
         )
         
         await self.session.execute(query)
+
+
+    async def load_hashes(self) -> Hash:
+        hashes = await self.session.scalar(
+            select(Hash).limit(1)
+        )
+        return hashes
+    
+    async def save_hashes(self, hashes: Hash) -> None:
+        row = await self.load_hashes()
+        if not row:
+            self.session.add(hashes)
+            return
+        
+        await self.session.execute(delete(Hash))
+        self.session.add(hashes)
+    

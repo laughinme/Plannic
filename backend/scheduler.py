@@ -1,6 +1,6 @@
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from services.schedule.update import update_schedule_db
+from services.schedule import update_schedule_db
 
 scheduler = AsyncIOScheduler()
 
@@ -12,6 +12,6 @@ def start_scheduler():
     scheduler.add_job(
         func=update_schedule_db,
         trigger='interval',
-        seconds=5
+        seconds=60
     )
     scheduler.start()

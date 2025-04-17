@@ -1,8 +1,4 @@
-import asyncio
 from datetime import datetime
-
-from .parsing import parse_schedule
-from .exchanges import apply_exchanges
 from models import (
     WeekDay, 
     Class, 
@@ -14,7 +10,6 @@ from models import (
     Period,
     Schedule
 )
-from db.session import get_session
 from repositories import DataLoadInterface
 from .utils import setup_lessons
         
@@ -69,7 +64,7 @@ async def create_schedule(
     ] = content["CLASS_SCHEDULE"][period]
     
     for class_id, records in schedule.items():
-        print(class_id)
+        # print(class_id)
         for day_and_lesson_num, lesson in records.items():
                         
             new_lessons = setup_lessons(
@@ -80,7 +75,7 @@ async def create_schedule(
             )
             
             for new_lesson in new_lessons:
-                print(new_lesson)
+                # print(new_lesson)
                 if not new_lesson.subject_id:
                     continue
                 
@@ -101,22 +96,3 @@ async def clear_all(dao: DataLoadInterface):
     
     for model in models:
         await dao.truncate_table(model)
-        
-
-
-async def update_schedule_db():
-    print('starting')
-    content = await parse_schedule()
-    
-    async with get_session() as session:
-        async with session.begin():
-            dao = DataLoadInterface(session)
-            
-            await clear_all(dao)
-            await load_datasets(content, dao)
-            await create_schedule(content, dao)
-            await apply_exchanges(content, dao)
-
-
-if __name__ == '__main__':
-    asyncio.run(update_schedule_db())
