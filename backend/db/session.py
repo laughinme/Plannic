@@ -21,6 +21,6 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
 
 @asynccontextmanager
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
-    """Returns prepared postgres session"""
+    """Returns prepared postgres session in asynccontextmanager"""
     async with async_session() as session:
         yield session
