@@ -17,21 +17,21 @@ services:
         networks:
             - backend
 
-    # bot:
-    #     build:
-    #         context: .
-    #         dockerfile: ./bot/Dockerfile
-    #     container_name: bot
-    #     env_file:
-    #         - ./bot/.env
-    #     environment:
-    #         - POSTGRES_HOST=db
-    #         - POSTGRES_PORT=5432
-    #     depends_on:
-    #         - db
-    #         - redis
-    #     networks:
-    #         - backend
+    bot:
+        build:
+            context: .
+            dockerfile: ./bot/Dockerfile
+        container_name: bot
+        env_file:
+            - ./bot/.env
+        environment:
+            - POSTGRES_HOST=db
+            - POSTGRES_PORT=5432
+        depends_on:
+            - db
+            - redis
+        networks:
+            - backend
 
     redis:
         image: redis:latest

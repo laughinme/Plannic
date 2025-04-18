@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
-# from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi import APIRouter, Depends, Query
 
 from schemas import (
     Lesson,

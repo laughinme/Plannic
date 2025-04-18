@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Plannic API"
     PROJECT_DESCRIPTION: str = "FastAPI backend for Plannic application"
     VERSION: str = "0.1.0"
+    
+    # API authorization
+    HEADER_NAME: str = "X-API-Key"
+    SECRET_KEY: str
 
     # Bot notification settings
     BOT_WEBHOOK_URL: str = "http://bot:8000/webhook"

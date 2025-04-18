@@ -1,6 +1,6 @@
 import asyncio
 
-from db.session import get_session
+from db import get_session
 from repositories import DataLoadInterface
 from pathlib import Path
 from .parsing import parse_schedule
